@@ -9,6 +9,7 @@ class UPMActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_upm)
-        Log.d(TAG, "onCreate: The upm activity is being created.");
+        Log.d(TAG, "onCreate: The upm activity is being created.")
+
     }
 }

@@ -61,7 +61,7 @@ class OpenStreetMapActivity : AppCompatActivity() {
             map.controller.setCenter(startPoint)
 
             addMarker(startPoint, "My current location")
-            //addMarkers(map, gymkhanaCoords, gymkhanaNames)
+            addMarkers(map, gymkhanaCoords, gymkhanaNames)
 
             addMarkersAndRoute(map, gymkhanaCoords, gymkhanaNames)
         };
@@ -72,6 +72,7 @@ class OpenStreetMapActivity : AppCompatActivity() {
         marker.position = point
         marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
         marker.title = title
+        marker.icon = ContextCompat.getDrawable(this, com.google.android.material.R.drawable.ic_m3_chip_checked_circle)
         map.overlays.add(marker)
         map.invalidate() // Reload map
     }

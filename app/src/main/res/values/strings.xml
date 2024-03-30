@@ -5,4 +5,7 @@
     <string name="title_map">Map</string>
     <string name="title_profile">Profile</string>
     <string name="title_activity_open_street_map">OpenStreetMapActivity</string>
+    <string name="signed_in">Signed in!</string>
+    <string name="signed_out">Signed out!</string>
+    <string name="signed_cancelled">Signed in cancelled</string>
 </resources>

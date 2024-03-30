@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "825449937376",
+    "firebase_url": "https://kotlinpou-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "kotlinpou",
+    "storage_bucket": "kotlinpou.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:825449937376:android:b9f8e0487b949faab35385",
+        "android_client_info": {
+          "package_name": "com.mfjmx.pou"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "825449937376-55ecg9a6j3ms2h2dcic983jeubeele5i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mfjmx.pou",
+            "certificate_hash": "8a2d5e63846e25e8b96c086ebdbb9c2ea9613345"
+          }
+        },
+        {
+          "client_id": "825449937376-7pj0hei6u6dh76a38nkjb1iahsfks6ti.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDay4SQBVtTCxCS2qFv71Hdn2pSiKbhF1I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "825449937376-7pj0hei6u6dh76a38nkjb1iahsfks6ti.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
