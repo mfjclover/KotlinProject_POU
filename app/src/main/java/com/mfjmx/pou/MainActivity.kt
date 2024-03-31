@@ -138,17 +138,23 @@ class MainActivity : ComponentActivity(), LocationListener {
         }
     }
     private fun launchSignInFlow() {
-        val providers = arrayListOf(
-            AuthUI.IdpConfig.EmailBuilder().build(),
-            AuthUI.IdpConfig.GoogleBuilder().build()
-        )
-        startActivityForResult(
-            AuthUI.getInstance()
-                .createSignInIntentBuilder()
-                .setAvailableProviders(providers)
-                .build(),
-            RC_SIGN_IN
-        )
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        if (currentUser == null) {
+            val providers = arrayListOf(
+                AuthUI.IdpConfig.EmailBuilder().build(),
+                AuthUI.IdpConfig.GoogleBuilder().build()
+            )
+            startActivityForResult(
+                AuthUI.getInstance()
+                    .createSignInIntentBuilder()
+                    .setAvailableProviders(providers)
+                    .build(),
+                RC_SIGN_IN
+            )
+        }else {
+            updateUIWithUsername()
+            Log.i(TAG, "El usuario ya está autenticado.")
+        }
     }
     private fun logout() {
         AuthUI.getInstance()

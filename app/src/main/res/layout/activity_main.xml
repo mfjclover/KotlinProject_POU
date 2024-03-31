@@ -8,17 +8,17 @@
     tools:layout_editor_absoluteY="194dp">
 
     <TextView
-        android:id="@+id/university_upm3"
+        android:id="@+id/university_ucm"
         android:layout_width="237dp"
         android:layout_height="72dp"
         android:clickable="true"
-        android:text="Universidad Politecnica de Madrid"
+        android:text="Universidad Complutense de Madrid"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.762"
+        app:layout_constraintHorizontal_bias="0.78"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.274" />
+        app:layout_constraintVertical_bias="0.657" />
 
     <ImageButton
         android:id="@+id/UPM_logo3"
@@ -45,14 +45,14 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/university_upm4"
+        android:id="@+id/university_uc3m"
         android:layout_width="237dp"
         android:layout_height="72dp"
         android:clickable="true"
-        android:text="Universidad Politecnica de Madrid"
+        android:text="Universidad Carlos III de Madrid"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.762"
+        app:layout_constraintHorizontal_bias="0.78"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.4" />
@@ -70,17 +70,17 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/university_upm2"
+        android:id="@+id/university_urjc"
         android:layout_width="237dp"
         android:layout_height="72dp"
         android:clickable="true"
-        android:text="Universidad Politecnica de Madrid"
+        android:text="Universidad Rey Juan Carlos"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.762"
+        app:layout_constraintHorizontal_bias="0.78"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.529" />
+        app:layout_constraintVertical_bias="0.53" />
 
     <TextView
         android:id="@+id/main_title"
@@ -131,10 +131,10 @@
         android:text="Universidad Politecnica de Madrid"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.762"
+        app:layout_constraintHorizontal_bias="0.78"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.656" />
+        app:layout_constraintVertical_bias="0.274" />
 
     <Button
         android:id="@+id/main_search"

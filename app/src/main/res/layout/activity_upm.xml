@@ -21,7 +21,7 @@
     <TextView
         android:id="@+id/text_hp_1"
         android:layout_width="100dp"
-        android:layout_height="27dp"
+        android:layout_height="40dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,7 +58,7 @@
     <TextView
         android:id="@+id/text_hp_3"
         android:layout_width="100dp"
-        android:layout_height="27dp"
+        android:layout_height="40dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -70,7 +70,7 @@
     <TextView
         android:id="@+id/text_hp_2"
         android:layout_width="100dp"
-        android:layout_height="27dp"
+        android:layout_height="40dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -78,19 +78,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.5" />
-
-    <TextView
-        android:id="@+id/text_more"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="More"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.92"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.27" />
 
     <Button
         android:id="@+id/upm_search"
@@ -176,7 +163,7 @@
     <TextView
         android:id="@+id/text_hp_5"
         android:layout_width="100dp"
-        android:layout_height="27dp"
+        android:layout_height="40dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -188,7 +175,7 @@
     <TextView
         android:id="@+id/text_hp_4"
         android:layout_width="100dp"
-        android:layout_height="27dp"
+        android:layout_height="40dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -226,7 +213,7 @@
     <TextView
         android:id="@+id/text_hp_6"
         android:layout_width="100dp"
-        android:layout_height="27dp"
+        android:layout_height="40dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
