@@ -19,11 +19,15 @@
         android:theme="@style/Theme.POU"
         tools:targetApi="31">
         <activity
+            android:name=".HotPointDetailActivity"
+            android:exported="false"
+            android:label="@string/title_activity_hot_point_detail"
+            android:theme="@style/Theme.POU" />
+        <activity
             android:name=".OpenStreetMapActivity"
             android:exported="false"
             android:label="@string/title_activity_open_street_map"
             android:theme="@style/Theme.POU" />
-
         <activity
             android:name=".UPMActivity"
             android:exported="false"

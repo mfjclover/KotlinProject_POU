@@ -128,7 +128,7 @@ class MainActivity : ComponentActivity(), LocationListener {
                 // user login succeeded
                 val user = FirebaseAuth.getInstance().currentUser
                 Toast.makeText(this, R.string.signed_in, Toast.LENGTH_SHORT).show();
-                Log.i(TAG, "onActivityResult " + getString(R.string.signed_in));
+                Log.i(TAG, "onActivityResult " + getString(R.string.signed_in) + " " + user);
             } else {
                 // user login failed
                 Log.e(TAG, "Error starting auth session: ${response?.error?.errorCode}")

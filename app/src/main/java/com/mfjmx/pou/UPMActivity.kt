@@ -1,6 +1,7 @@
 package com.mfjmx.pou
 
 import HotPoint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
@@ -59,7 +60,6 @@ class UPMActivity : ComponentActivity() {
                     val hotPoint = hotPointSnapshot.getValue(HotPoint::class.java)
                     // Esto asume que las claves en Firebase son "hp1", "hp2", etc.
                     val key = hotPointSnapshot.key
-                    Log.d(TAG, "${hotPoint?.name} - ${hotPoint?.description}")
                     textViewMap[key]?.text = hotPoint?.name
 
                     val imageRef = storage.reference.child("HotPoints/image_${key}.jpg")
@@ -70,15 +70,23 @@ class UPMActivity : ComponentActivity() {
                                 .load(uri)
                                 .into(it)
                         }
+                        imageView?.setOnClickListener {
+                            val intent = Intent(this@UPMActivity, HotPointDetailActivity::class.java).apply {
+                                putExtra("hotPointName", hotPoint?.name)
+                                putExtra("hotPointDescription", hotPoint?.description)
+                                putExtra("hotPointImageUrl", uri.toString())
+                            }
+                            startActivity(intent)
+                        }
                     }.addOnFailureListener {
                         Log.w(TAG, "Error al cargar imagen para $key", it)
                     }
-
                 }
             }
             override fun onCancelled(error: DatabaseError) {
                 Log.w(TAG, "Failed to read value.", error.toException())
             }
+
         })
     }
 }
