@@ -9,4 +9,5 @@
     <string name="signed_out">Signed out!</string>
     <string name="signed_cancelled">Signed in cancelled</string>
     <string name="title_activity_hot_point_detail">HotPointDetailActivity</string>
+    <string name="title_activity_profile">ProfileActivity</string>
 </resources>
