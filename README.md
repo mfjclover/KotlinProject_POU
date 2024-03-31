@@ -55,8 +55,8 @@ Video demonstrating how the app works (Max 1 video of 1 minute), upload it to a 
 
 ## Features
 List the **functional** features of the app. For example:
-- Search for common routes in Madrid.
-- Filters by transport type.
+- Search for hot points in universities.
+- User profile edit.
 - Interactive maps.
 - Real-time traffic information.
 
@@ -64,23 +64,20 @@ List the **technical** features of the app. You might include specific reference
 in your repo. For example:
 - Persistence in csv/text file
 - Persistence in shared preferences
-- Persistence in Room database. Ref: [Source code](https://github.com/btabuenca/HelloWorldKt/blob/268a3367296238c76ec1baa18d0b5d268a49235f/app/src/main/java/es/upm/btb/helloworldkt/persistence/room/LocationEntity.kt#L6 "LocationEntity")
+- Persistence in Room database.
 - Firebase Realtime database
 - Firebase authentication
-- Maps: Openstreetmaps or Google maps
-- Resful APIs used (*e.g., Openwheathermaps https://openweathermap.org/api .Describe the api here*). 
-- Menu: *e.g., Toolbar*
-- Images: *e.g. glide or picasso library*
-- Sensors: *e.g., GPS coordinates, noise meter, light meter, compass, gyroscope, ...* 
-- ...
+- Maps: Openstreetmaps
+- Menu: Bottom navigation.
+- Sensors: GPS coordinates
 
 ## How to Use
-Provide instructions on how to get started with the app as user. 
+First of all authenticate.
+Select your university or directly the map in the bottom navigation bar, where you can find hot points of interest.
+Also you can edit the user profile, finding it in the bottom navigation bar.
 
-## Additional section
-You might describe any additional section you might consider necessary. Remove this if not necessary.
 
 ## Participants
 List of MAD developers:
-- Name SecondName Member1 (emailmemmber1@alumunos.upm.es)
-- Name SecondName Member1 (emailmemmber1@alumunos.upm.es)  
+- Marcos Fu Jin (marcos.fu.jin@alumunos.upm.es)
+- Matteo Xu (matteo.xu@alumunos.upm.es)  
