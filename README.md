@@ -25,19 +25,13 @@ Include screenshots of the app in action. You can upload the images to GitHub an
   </tr>
   <tr>
     <td>
-      <img src="img/nav3.png" width="80%" alt="Describe here image 3"/>
-      <p align="center">Describe here image 3</p>
-    </td>
+      <img src="img/img3.jpg" width="80%"/>
+    </td>>
     <td>
-      <img src="img/nav4.png" width="80%" alt="Describe here image 4"/>
-      <p align="center">Describe here image 4</p>
+      <img src="img/img4.jpg" width="80%"/>
     </td>
   </tr>
   <tr>
-    <td>
-      <img src="img/nav6.png" width="80%" alt="Describe here image 5"/>
-      <p align="center">Describe here image 5</p>
-    </td>
     <td>
     </td>
   </tr>
