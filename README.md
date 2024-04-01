@@ -40,7 +40,7 @@ Include screenshots of the app in action. You can upload the images to GitHub an
 
 
 ## Demo Video:  
-<a href="https://vimeo.com/410664338?share=copy">
+<a href="">
 <img src="img/img2.jpg" alt="POU" width="100" /> 
 </a>
 
