@@ -39,10 +39,9 @@ Include screenshots of the app in action. You can upload the images to GitHub an
 
 
 
-## Demo Video
-Video demonstrating how the app works (Max 1 video of 1 minute), upload it to a platform like YouTube or Vimeo (it might also work with Stream) and link it here:  
+## Demo Videot here:  
 <a href="https://vimeo.com/410664338?share=copy">
-<img src="img/thumb.png" alt="Noise meter app" width="100" /> 
+<img src="img/img2.jng" alt="POU" width="100" /> 
 </a>
 
 ## Features
