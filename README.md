@@ -9,7 +9,7 @@ Workspace: https://upm365.sharepoint.com/sites/Tracking/SitePages/Tracking.aspx
   
 
 ## Description
-First of all this is app is specially designed for new students, where they can find the most interesting points of their university, we try to make a more enjoyable form for them to make famillier with every point.
+First of all this is app is specially designed for new students, where they can find the most interesting points of their university, we try to make a more enjoyable form for them to make familier with every point.
 
 ## Screenshots and navigation
 Include screenshots of the app in action. You can upload the images to GitHub and then reference them here using Markdown or HTML syntax:
@@ -40,7 +40,7 @@ Include screenshots of the app in action. You can upload the images to GitHub an
 
 
 ## Demo Video:  
-<a href="">
+<a href="https://upm365-my.sharepoint.com/:v:/g/personal/marcos_fu_jin_alumnos_upm_es/EZHlpWfffSNLoMqIu09EWZwB-BECnhRWgkfh4izhUdEu7Q?e=J6RVNY&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D">
 <img src="img/img2.jpg" alt="POU" width="100" /> 
 </a>
 
@@ -53,12 +53,10 @@ List the **functional** features of the app. For example:
 
 List the **technical** features of the app. You might include specific references to source code
 in your repo. For example:
-- Persistence in csv/text file
-- Persistence in shared preferences
-- Persistence in Room database.
 - Firebase Realtime database
 - Firebase authentication
-- Maps: Openstreetmaps
+- Firebase storage
+- Maps: Open Street Maps
 - Menu: Bottom navigation.
 - Sensors: GPS coordinates
 
