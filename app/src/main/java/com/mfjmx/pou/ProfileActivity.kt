@@ -20,6 +20,7 @@ class ProfileActivity : ComponentActivity() {
             uploadImageToFirebaseStorage(it)
         }
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
@@ -34,25 +35,57 @@ class ProfileActivity : ComponentActivity() {
             pickImage.launch("image/*")
         }
 
+        // Cargar imagen de perfil desde Firebase Storage o imagen predeterminada
+        loadProfileImage()
+
         backTextView.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
     }
 
+    private fun loadProfileImage() {
+        val currentUser = firebaseAuth.currentUser
+        val storageRef = FirebaseStorage.getInstance().reference
+        val profileImageView = findViewById<ImageView>(R.id.profile_image)
+
+        if (currentUser != null) {
+            val profileImageRef = storageRef.child("ProfileImages/${currentUser.uid}/profile.jpg")
+
+            profileImageRef.downloadUrl.addOnSuccessListener { uri ->
+                Glide.with(this).load(uri).into(profileImageView)
+            }.addOnFailureListener {
+                // Si falla, cargar imagen predeterminada desde Firebase Storage
+                loadDefaultProfileImage()
+            }
+        } else {
+            loadDefaultProfileImage()
+        }
+    }
+
+    private fun loadDefaultProfileImage() {
+        val storageRef = FirebaseStorage.getInstance().reference
+        val defaultProfileImageRef = storageRef.child("ProfileImages/IconoPredeterminado.png")
+        val profileImageView = findViewById<ImageView>(R.id.profile_image)
+
+        defaultProfileImageRef.downloadUrl.addOnSuccessListener { uri ->
+            Glide.with(this).load(uri).into(profileImageView)
+        }.addOnFailureListener {
+            Log.e("ProfileActivity", "Error al cargar la imagen predeterminada")
+            showToastError("Error al cargar la imagen predeterminada")
+        }
+    }
+
     private fun uploadImageToFirebaseStorage(imageUri: Uri) {
         val user = firebaseAuth.currentUser
         if (user != null) {
-            val username = user.displayName ?: "default"
             val storageRef = FirebaseStorage.getInstance().reference
-            val profileImageRef = storageRef.child("ProfileImages/${username}.jpg")
+            val profileImageRef = storageRef.child("ProfileImages/${user.uid}/profile.jpg")
 
             profileImageRef.putFile(imageUri)
-                .addOnSuccessListener { taskSnapshot ->
-                    taskSnapshot.metadata?.reference?.downloadUrl?.addOnSuccessListener { uri ->
-                        val profileImageView = findViewById<ImageView>(R.id.profile_image)
-                        Glide.with(this@ProfileActivity).load(uri).into(profileImageView)
-                    }
+                .addOnSuccessListener {
+                    // Recargar la imagen de perfil después de la subida exitosa
+                    loadProfileImage()
                 }
                 .addOnFailureListener {
                     Log.e("ProfileActivity", "Error al subir la imagen")
@@ -60,10 +93,8 @@ class ProfileActivity : ComponentActivity() {
                 }
         }
     }
+
     private fun showToastError(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
-
 }
-
-
