@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 
-class ProfileActivity : ComponentActivity() {
+class ProfileActivity : BaseActivity() {
     private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     private val pickImage = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
         uri?.let {
@@ -23,7 +23,7 @@ class ProfileActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_profile)
+        setContentView(getLayoutResourceId())
 
         val backTextView = findViewById<TextView>(R.id.back_profile)
         val profileImageView = findViewById<ImageView>(R.id.profile_image)
@@ -42,6 +42,10 @@ class ProfileActivity : ComponentActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun getLayoutResourceId(): Int {
+        return R.layout.activity_profile
     }
 
     private fun loadProfileImage() {

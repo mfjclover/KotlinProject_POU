@@ -13,7 +13,7 @@ import org.osmdroid.views.overlay.Marker
 import org.osmdroid.views.overlay.Polyline
 
 
-class OpenStreetMapActivity : AppCompatActivity() {
+class OpenStreetMapActivity : BaseActivity() {
     private val TAG = "mfjmxOpenStreetMapActivity"
     private lateinit var map: MapView
 
@@ -41,7 +41,7 @@ class OpenStreetMapActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_open_street_map)
+        setContentView(getLayoutResourceId())
 
         Log.d(TAG, "onCreate: The activity is being created.");
 
@@ -65,6 +65,9 @@ class OpenStreetMapActivity : AppCompatActivity() {
 
             addMarkersAndRoute(map, gymkhanaCoords, gymkhanaNames)
         };
+    }
+    override fun getLayoutResourceId(): Int {
+        return R.layout.activity_open_street_map
     }
 
     private fun addMarker(point: GeoPoint, title: String) {

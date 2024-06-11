@@ -19,7 +19,7 @@ import com.firebase.ui.auth.IdpResponse
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 
-class MainActivity : ComponentActivity(), LocationListener {
+class MainActivity : BaseActivity(), LocationListener {
     private val TAG = "mfjmxMainActivity"
     private lateinit var locationManager: LocationManager
     private val locationPermissionCode = 2
@@ -31,7 +31,7 @@ class MainActivity : ComponentActivity(), LocationListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(getLayoutResourceId())
         Log.d(TAG, "onCreate: The activity is being created.")
 
         locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
@@ -66,41 +66,13 @@ class MainActivity : ComponentActivity(), LocationListener {
             logout()
         }
 
-        // ButtomNavigationMenu
-        val navView: BottomNavigationView = findViewById(R.id.nav_view)
-        navView.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.navigation_home -> {
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                    true
-                }
-                R.id.navigation_map -> {
-
-                    if (latestLocation != null) {
-                        val intent = Intent(this, OpenStreetMapActivity::class.java)
-                        val bundle = Bundle()
-                        bundle.putParcelable("location", latestLocation)
-                        intent.putExtra("locationBundle", bundle)
-                        startActivity(intent)
-                    }else{
-                        Log.e(TAG, "Location not set yet.")
-                    }
-
-                    true
-                }
-                R.id.navigation_profile -> {
-                    val intent = Intent(this, ProfileActivity::class.java)
-                    startActivity(intent)
-                    true
-                }
-                else -> false
-            }
-        }
-
         // Init authentication flow
         launchSignInFlow()
 
+    }
+
+    override fun getLayoutResourceId(): Int {
+        return R.layout.activity_main
     }
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
@@ -114,6 +86,7 @@ class MainActivity : ComponentActivity(), LocationListener {
     }
     override fun onLocationChanged(location: Location) {
         latestLocation = location
+        intent.putExtra("latestLocation", latestLocation)
     }
     override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {}
     override fun onProviderEnabled(provider: String) {}
