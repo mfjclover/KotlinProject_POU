@@ -40,16 +40,17 @@ Include screenshots of the app in action. You can upload the images to GitHub an
 
 
 ## Demo Video:  
-<a href="https://upm365-my.sharepoint.com/:v:/g/personal/marcos_fu_jin_alumnos_upm_es/EZHlpWfffSNLoMqIu09EWZwB-BECnhRWgkfh4izhUdEu7Q?e=J6RVNY&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D">
+<a href="https://upm365-my.sharepoint.com/:v:/g/personal/matteo_xu_alumnos_upm_es/ERTtK2DuE1tHm8uL8KFXwckBVVQS_6MtTEj4ZM38E87q5g?e=BYt6Kn">
 <img src="img/img2.jpg" alt="POU" width="100" /> 
 </a>
 
 ## Features
 List the **functional** features of the app. For example:
-- Search for hot points in universities.
+- Look for hot points in universities.
 - User profile edit.
 - Interactive maps.
 - Real-time traffic information.
+- Hot point comment.
 
 List the **technical** features of the app. You might include specific references to source code
 in your repo. For example:
