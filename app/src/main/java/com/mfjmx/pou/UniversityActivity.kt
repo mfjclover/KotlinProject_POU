@@ -4,6 +4,7 @@ import HotPoint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
@@ -13,8 +14,8 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 
-class UPMActivity : BaseActivity() {
-    private val TAG = "mfjmxUPMActivity"
+class UniversityActivity : BaseActivity() {
+    private val TAG = "mfjmxUniversityActivity"
     private lateinit var textViewMap: Map<String, TextView>
     private lateinit var imageViewMap: Map<String, ImageView>
     private lateinit var storage: FirebaseStorage
@@ -22,11 +23,16 @@ class UPMActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutResourceId())
-        Log.d(TAG, "onCreate: The upm activity is being created.")
+        Log.d(TAG, "onCreate: The university activity is being created.")
+
+        val universityId = intent.getStringExtra("university_id") ?: "UPM"
+
+        val universityTitle = findViewById<TextView>(R.id.upm_title)
+        universityTitle.text = universityId
 
         // Obtener una instancia y referencia de Firebase Database
         val database = FirebaseDatabase.getInstance()
-        val myRef = database.getReference("hotPoints")
+        val myRef = database.getReference("hotPoints/$universityId")
 
         // Obtener una instancia de Firebase Storage
         storage = FirebaseStorage.getInstance()
@@ -58,19 +64,20 @@ class UPMActivity : BaseActivity() {
                     val key = hotPointSnapshot.key
                     textViewMap[key]?.text = hotPoint?.name
 
-                    val imageRef = storage.reference.child("HotPoints/image_${key}.jpg")
+                    val imageRef = storage.reference.child("HotPoints/$universityId/image_${key}.jpg")
                     imageRef.downloadUrl.addOnSuccessListener { uri ->
                         val imageView = imageViewMap[key]
                         imageView?.let {
-                            Glide.with(this@UPMActivity)
+                            Glide.with(this@UniversityActivity)
                                 .load(uri)
                                 .into(it)
                         }
                         imageView?.setOnClickListener {
-                            val intent = Intent(this@UPMActivity, HotPointDetailActivity::class.java).apply {
+                            val intent = Intent(this@UniversityActivity, HotPointDetailActivity::class.java).apply {
                                 putExtra("hotPointName", hotPoint?.name)
                                 putExtra("hotPointDescription", hotPoint?.description)
                                 putExtra("hotPointImageUrl", uri.toString())
+                                putExtra("university_id", universityId)
                             }
                             startActivity(intent)
                         }
@@ -89,9 +96,16 @@ class UPMActivity : BaseActivity() {
         backButton.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
         }
+
+        val goToMapButton = findViewById<Button>(R.id.go_to_map)
+        goToMapButton.setOnClickListener {
+            val intent = Intent(this, OpenStreetMapActivity::class.java)
+            intent.putExtra("university_id", universityId)
+            startActivity(intent)
+        }
     }
 
     override fun getLayoutResourceId(): Int {
-        return R.layout.activity_upm
+        return R.layout.activity_university
     }
 }

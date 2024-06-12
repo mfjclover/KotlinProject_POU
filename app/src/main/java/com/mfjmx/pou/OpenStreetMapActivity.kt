@@ -3,7 +3,6 @@ package com.mfjmx.pou
 import android.location.Location
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import org.osmdroid.config.Configuration
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
@@ -11,77 +10,69 @@ import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.Marker
 import org.osmdroid.views.overlay.Polyline
-
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 
 class OpenStreetMapActivity : BaseActivity() {
     private val TAG = "mfjmxOpenStreetMapActivity"
     private lateinit var map: MapView
-
-    val gymkhanaCoords = listOf(
-        GeoPoint(40.38779608214728, -3.627687914352839), // Tennis
-        GeoPoint(40.38788595319803, -3.627048250272035), // Futsal outdoors
-        GeoPoint(40.3887315224542, -3.628643539758645), // Fashion and design
-        GeoPoint(40.38926842612264, -3.630067893975619), // Topos
-        GeoPoint(40.38956358584258, -3.629046081389352), // Teleco
-        GeoPoint(40.38992125672989, -3.6281366497769714), // ETSISI
-        GeoPoint(40.39037466191718, -3.6270256763598447), // Library
-        GeoPoint(40.389855884803005, -3.626782180787362) // CITSEM
-    )
-    val gymkhanaNames = listOf(
-        "Tennis",
-        "Futsal outdoors",
-        "Fashion and design school",
-        "Topography school",
-        "Telecommunications school",
-        "ETSISI",
-        "Library",
-        "CITSEM"
-    )
-
+    private lateinit var universityId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutResourceId())
 
-        Log.d(TAG, "onCreate: The activity is being created.");
+        Log.d(TAG, "onCreate: The open street activity is being created.")
 
-        val bundle = intent.getBundleExtra("locationBundle")
-        val location: Location? = bundle?.getParcelable("location")
+        universityId = intent.getStringExtra("university_id") ?: "UPM"
 
-        if (location != null) {
-            Log.i(TAG, "onCreate: Location["+location.altitude+"]["+location.latitude+"]["+location.longitude+"][")
+        Configuration.getInstance().load(applicationContext, getSharedPreferences("osm", MODE_PRIVATE))
 
-            Configuration.getInstance().load(applicationContext, getSharedPreferences("osm", MODE_PRIVATE))
+        map = findViewById(R.id.map)
+        map.setTileSource(TileSourceFactory.MAPNIK)
+        map.controller.setZoom(18.0)
 
-            map = findViewById(R.id.map)
-            map.setTileSource(TileSourceFactory.MAPNIK)
-            map.controller.setZoom(18.0)
-
-            val startPoint = GeoPoint(location.latitude, location.longitude)
-            map.controller.setCenter(startPoint)
-
-            addMarker(startPoint, "My current location")
-            addMarkers(map, gymkhanaCoords, gymkhanaNames)
-
-            addMarkersAndRoute(map, gymkhanaCoords, gymkhanaNames)
-        };
+        loadHotPoints(universityId)
     }
+
     override fun getLayoutResourceId(): Int {
         return R.layout.activity_open_street_map
     }
 
-    private fun addMarker(point: GeoPoint, title: String) {
-        val marker = Marker(map)
-        marker.position = point
-        marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
-        marker.title = title
-        marker.icon = ContextCompat.getDrawable(this, com.google.android.material.R.drawable.ic_m3_chip_checked_circle)
-        map.overlays.add(marker)
-        map.invalidate() // Reload map
+    private fun loadHotPoints(universityId: String) {
+        val database = FirebaseDatabase.getInstance()
+        val myRef = database.getReference("coordinates/$universityId")
+
+        myRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val locationsCoords = mutableListOf<GeoPoint>()
+                val locationsNames = mutableListOf<String>()
+
+                dataSnapshot.children.forEach { snapshot ->
+                    val latitude = snapshot.child("latitude").getValue(Double::class.java) ?: 0.0
+                    val longitude = snapshot.child("longitude").getValue(Double::class.java) ?: 0.0
+                    val locationName = snapshot.key ?: ""
+
+                    locationsCoords.add(GeoPoint(latitude, longitude))
+                    locationsNames.add(locationName)
+                }
+
+                if (locationsCoords.isNotEmpty()) {
+                    map.controller.setCenter(locationsCoords[0])
+                    addMarkers(map, locationsCoords, locationsNames)
+                    addMarkersAndRoute(map, locationsCoords, locationsNames)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e(TAG, "Failed to read coordinates.", error.toException())
+            }
+        })
     }
 
     fun addMarkers(mapView: MapView, locationsCoords: List<GeoPoint>, locationsNames: List<String>) {
-
         for (location in locationsCoords) {
             val marker = Marker(mapView)
             marker.position = location

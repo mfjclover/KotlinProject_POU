@@ -25,13 +25,16 @@ class MainActivity : BaseActivity() {
 
         val upmTitle: TextView = findViewById(R.id.university_upm)
         upmTitle.setOnClickListener {
-            val intentUPM = Intent(this, UPMActivity::class.java)
+            val intentUPM = Intent(this, UniversityActivity::class.java)
+            intentUPM.putExtra("university_id", "UPM")
             startActivity(intentUPM)
         }
 
-        val logOut: TextView = findViewById(R.id.text_LogOut)
-        logOut.setOnClickListener {
-            logout()
+        val uc3mTitle: TextView = findViewById(R.id.university_uc3m)
+        uc3mTitle.setOnClickListener {
+            val intentUC3M = Intent(this, UniversityActivity::class.java)
+            intentUC3M.putExtra("university_id", "UC3M")
+            startActivity(intentUC3M)
         }
 
         // Init authentication flow
@@ -78,19 +81,6 @@ class MainActivity : BaseActivity() {
             updateUIWithUsername()
             Log.i(TAG, "El usuario ya está autenticado.")
         }
-    }
-
-    private fun logout() {
-        AuthUI.getInstance()
-            .signOut(this)
-            .addOnCompleteListener {
-                // Restart activity after finishing
-                val intent = Intent(this, MainActivity::class.java)
-                // Clean back stack so that user cannot retake activity after logout
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                startActivity(intent)
-                finish()
-            }
     }
 
     private fun updateUIWithUsername() {

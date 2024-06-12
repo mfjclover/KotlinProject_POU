@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -12,6 +13,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
+import com.firebase.ui.auth.AuthUI
 
 class ProfileActivity : BaseActivity() {
     private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -28,6 +30,7 @@ class ProfileActivity : BaseActivity() {
         val backTextView = findViewById<TextView>(R.id.back_profile)
         val profileImageView = findViewById<ImageView>(R.id.profile_image)
         val profileNameTextView = findViewById<TextView>(R.id.profile_name)
+        val logOutButton = findViewById<Button>(R.id.button_LogOut)
         val currentUser = firebaseAuth.currentUser
 
         profileNameTextView.text = currentUser?.displayName ?: "Nombre de Usuario"
@@ -41,6 +44,10 @@ class ProfileActivity : BaseActivity() {
         backTextView.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+        }
+
+        logOutButton.setOnClickListener {
+            logout()
         }
     }
 
@@ -100,5 +107,18 @@ class ProfileActivity : BaseActivity() {
 
     private fun showToastError(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    }
+
+    private fun logout() {
+        AuthUI.getInstance()
+            .signOut(this)
+            .addOnCompleteListener {
+                // Restart activity after finishing
+                val intent = Intent(this, MainActivity::class.java)
+                // Clean back stack so that user cannot retake activity after logout
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+                finish()
+            }
     }
 }

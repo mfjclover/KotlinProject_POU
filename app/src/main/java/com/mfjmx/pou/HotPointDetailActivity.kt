@@ -15,6 +15,8 @@ class HotPointDetailActivity : BaseActivity() {
         val hotPointName = intent.getStringExtra("hotPointName")
         val hotPointDescription = intent.getStringExtra("hotPointDescription")
         val hotPointImageUrl = intent.getStringExtra("hotPointImageUrl")
+        val universityId = intent.getStringExtra("university_id") ?: "UPM"
+
         val nameTextView = findViewById<TextView>(R.id.hotpoint_detail_name)
         val descriptionTextView = findViewById<TextView>(R.id.hotpoint_detail_description)
         val imageView = findViewById<ImageView>(R.id.hotpoint_detail_image)
@@ -29,7 +31,9 @@ class HotPointDetailActivity : BaseActivity() {
 
         val backButton = findViewById<TextView>(R.id.back_hotpoint)
         backButton.setOnClickListener {
-            startActivity(Intent(this, UPMActivity::class.java))
+            val intent = Intent(this, UniversityActivity::class.java)
+            intent.putExtra("university_id", universityId)
+            startActivity(intent)
         }
     }
 
