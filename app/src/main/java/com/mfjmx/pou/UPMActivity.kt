@@ -6,18 +6,14 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.activity.ComponentActivity
 import com.bumptech.glide.Glide
-import com.google.firebase.Firebase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.storage
 
-
-class UPMActivity : ComponentActivity() {
+class UPMActivity : BaseActivity() {
     private val TAG = "mfjmxUPMActivity"
     private lateinit var textViewMap: Map<String, TextView>
     private lateinit var imageViewMap: Map<String, ImageView>
@@ -25,7 +21,7 @@ class UPMActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_upm)
+        setContentView(getLayoutResourceId())
         Log.d(TAG, "onCreate: The upm activity is being created.")
 
         // Obtener una instancia y referencia de Firebase Database
@@ -33,7 +29,7 @@ class UPMActivity : ComponentActivity() {
         val myRef = database.getReference("hotPoints")
 
         // Obtener una instancia de Firebase Storage
-        storage = Firebase.storage
+        storage = FirebaseStorage.getInstance()
 
         // Inicializar el mapa de TextViews e ImageViews
         textViewMap = mapOf(
@@ -83,10 +79,19 @@ class UPMActivity : ComponentActivity() {
                     }
                 }
             }
+
             override fun onCancelled(error: DatabaseError) {
                 Log.w(TAG, "Failed to read value.", error.toException())
             }
-
         })
+
+        val backButton = findViewById<TextView>(R.id.back_upm)
+        backButton.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+        }
+    }
+
+    override fun getLayoutResourceId(): Int {
+        return R.layout.activity_upm
     }
 }

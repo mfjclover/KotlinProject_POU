@@ -1,15 +1,16 @@
 package com.mfjmx.pou
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-class HotPointDetailActivity : AppCompatActivity() {
+
+class HotPointDetailActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_hot_point_detail)
+        setContentView(getLayoutResourceId())
 
         val hotPointName = intent.getStringExtra("hotPointName")
         val hotPointDescription = intent.getStringExtra("hotPointDescription")
@@ -25,5 +26,14 @@ class HotPointDetailActivity : AppCompatActivity() {
             .load(hotPointImageUrl)
             .override(com.bumptech.glide.request.target.Target.SIZE_ORIGINAL)
             .into(imageView)
+
+        val backButton = findViewById<TextView>(R.id.back_hotpoint)
+        backButton.setOnClickListener {
+            startActivity(Intent(this, UPMActivity::class.java))
+        }
+    }
+
+    override fun getLayoutResourceId(): Int {
+        return R.layout.activity_hot_point_detail
     }
 }
